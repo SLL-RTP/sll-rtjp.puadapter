@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+DON'T CHANGE THE CONTENT OF THIS COMMENT UNLESS YOU REALLY KNOW WHAT YOU ARE DOING!
+[soi-toolkit.gen.version=0.6.0]
+[soi-toolkit.gen.type=schemas]
+[soi-toolkit.gen.createDate=2013-11-26T14:46:17.935+01:00]
+[soi-toolkit.gen.artifactId=puadapter]
+-->
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+  
+    <parent>
+        <groupId>se.sll.rtjp.puadapter</groupId>
+        <artifactId>puadapter-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+	<artifactId>puadapter-schemas</artifactId>
+	<packaging>jar</packaging>
+    <name>puadapter-schemas</name>
+
+	<scm>
+        <!-- TODO: Sample <scm>-tag, update to reflect you own environment! -->
+		<connection>scm:svn:https://my-subversion-server/svn/puadapter-schemas/trunk</connection>
+		<developerConnection>scm:svn:https://my-subversion-server/svn/puadapter-schemas/trunk</developerConnection>
+		<url>https://my-subversion-server/svn/puadapter-schemas/trunk</url>
+	</scm>
+	
+	<distributionManagement>
+        <!-- TODO: Sample <distributionManagement>-tag, update to reflect you own environment! -->
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Snapshot Repository</name>
+            <url>http://my-maven-repo-server/repositories/snapshots</url>
+        </snapshotRepository>  
+        <repository>
+            <id>releases</id>
+            <name>Release Repository</name>
+            <url>http://my-maven-repo-server/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+	<properties>
+        <!-- Properties for generating code from WSDL and XML Schemas (JAX-WS + JAXB) -->
+        <schema.path>${project.baseUri}/src/main/resources/schemas</schema.path>
+        <schema.gen.src.dir>${project.build.directory}/generated-sources/cxf</schema.gen.src.dir>
+	</properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.soitoolkit.commons.poms</groupId>
+      <artifactId>soitoolkit-schemas-jax-ws-dependencies</artifactId>
+      <version>${soitoolkit.version}</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+ 
+ 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>ws.generate</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${schema.gen.src.dir}</sourceRoot>
+							<wsdlOptions>
+	                            <wsdlOption>
+									<wsdl>${schema.path}/interactions/LookupResidentForFullProfileInteraction/LookupResidentForFullProfileInteraction_1.1_RIVTABP21.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-validate</extraarg> 
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:population:residentmaster:LookupResidentForFullProfile:1:rivtabp21=riv.population.residentmaster.lookupresidentforfullprofile.v1.rivtabp21</extraarg> 
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1=riv.population.residentmaster.lookupresidentforfullprofileresponder.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:population:residentmaster:1=riv.population.residentmaster.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:population:residentmaster:1.1=riv.population.residentmaster.v11</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:1=riv.itintegration.registry.v1</extraarg>
+									</extraargs>
+	            				</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<!-- Create a zip-file only containing wsdl & xsd files, i.e. no JAX-WS/JAXB-generated artifacts, for example for a Microsoft .Net C# app -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<!-- Plugin-dependency to a shared assembly-descriptor that creates the zip-file -->
+						<groupId>org.soitoolkit.commons.poms</groupId>
+						<artifactId>soitoolkit-assembly-descriptors</artifactId>
+						<version>${soitoolkit.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>schema-assembly-descriptor.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>default</id>
+			<pluginRepositories>
+			   <pluginRepository>
+				   <id>mulesoft-release</id>   
+				   <name>mulesoft release repository</name>
+				   <layout>default</layout>
+				   <url>https://repository.mulesoft.org/releases/</url>
+				   <snapshots>
+					  <enabled>false</enabled>
+				   </snapshots>
+			   </pluginRepository>
+			</pluginRepositories>
+			<activation>
+			<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+  
+</project>
