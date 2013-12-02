@@ -23,13 +23,10 @@ import riv.population.residentmaster.v1.AvregistreringTYPE;
 import riv.population.residentmaster.v1.AvregistreringsorsakKodKomplettTYPE;
 import riv.population.residentmaster.v1.CivilstandKodTYPE;
 import riv.population.residentmaster.v1.CivilstandTYPE;
-import riv.population.residentmaster.v1.FodelseTYPE;
-import riv.population.residentmaster.v1.HemortSverigeTYPE;
 import riv.population.residentmaster.v1.JaNejTYPE;
 import riv.population.residentmaster.v1.KonTYPE;
 import riv.population.residentmaster.v1.NamnTYPE;
 import riv.population.residentmaster.v1.ObjectFactory;
-import riv.population.residentmaster.v1.OrtUtlandetTYPE;
 import riv.population.residentmaster.v1.PersonpostTYPE;
 import riv.population.residentmaster.v1.RelationPersonIdTYPE;
 import riv.population.residentmaster.v1.RelationerTYPE;
@@ -86,7 +83,7 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
 
     private ResidentType createAndPopulateResidentType(ResidentExtractor re, ObjectFactory objectFactory) {
         ResidentType transformedResident = objectFactory.createResidentType();
-        transformedResident.setSenasteAndringFolkbokforing(re.getField(PKNODPLUS.AVISERINGSNAMN));
+        transformedResident.setSenasteAndringFolkbokforing(re.getField(PKNODPLUS.SENASTE_REG_DATUM));
         transformedResident.setSekretessmarkering(JaNejTYPE.N);
         return transformedResident;
     }
@@ -105,7 +102,7 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         civstand.setCivilstandKod(getCivilstandKodTYPEFromKod(re.getField(PKNODPLUS.CIVILSTÅND)));
         personPost.setCivilstand(civstand);
 
-        FodelseTYPE fodelse = objectFactory.createFodelseTYPE();
+        /*FodelseTYPE fodelse = objectFactory.createFodelseTYPE(); // TODO - vi har väl inget annat än födelsedatum i PU?
         HemortSverigeTYPE hemortSverige = objectFactory.createHemortSverigeTYPE();
         // hemortSverige.setFodelseforsamling(value) ????
         // hemortSverige.setFodelselanKod(); ???
@@ -115,15 +112,14 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         // ortUtlandet.setFodelseland(value);
         // ortUtlandet.setFodelseortUtland(value);
         // ortUtlandet.setStyrkt(value);
-        fodelse.setOrtUtlandet(ortUtlandet);
-
-        personPost.setFodelse(fodelse);
+        fodelse.setOrtUtlandet(ortUtlandet);*/
+        //personPost.setFodelse(fodelse);
 
         personPost.setFodelsetid(re.getField(PKNODPLUS.FÖDELESDATUM));
 
         SvenskAdressTYPE svenskAdress = objectFactory.createSvenskAdressTYPE();
         svenskAdress.setFastighetsbeteckning(re.getField(PKNODPLUS.FASTIGHETSBETECKNING));
-        svenskAdress.setFolkbokforingsdatum(re.getField(PKNODPLUS.SENASTE_REG_DATUM)); // Kanske första folkbokföring
+        svenskAdress.setFolkbokforingsdatum(re.getField(PKNODPLUS.SENASTE_REG_DATUM)); // TODO Kanske första folkbokföring
                                                                                        // som menas?
         svenskAdress.setForsamlingKod(re.getField(PKNODPLUS.FÖRSAMLING));
         svenskAdress.setKommunKod(re.getField(PKNODPLUS.KOMMUN));
@@ -138,8 +134,9 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         personPost.setHanvisningsPersonNr(re.getField(PKNODPLUS.AKTUELLT_PERSONNUMMER));
 
         // personPost.setInvandring(value) // TODO!
-
-        personPost.setKon(KonTYPE.M); // TODO!
+        
+        int konSiffra = (Integer.valueOf(re.getField(PKNODPLUS.AKTUELLT_PERSONNUMMER).substring(10, 11)));
+        personPost.setKon(konSiffra % 2 == 0 ? KonTYPE.K : KonTYPE.M);
 
         NamnTYPE namnType = objectFactory.createNamnTYPE();
         namnType.setAviseringsnamn(re.getField(PKNODPLUS.AVISERINGSNAMN));
@@ -154,14 +151,16 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         RelationerTYPE relationer = objectFactory.createRelationerTYPE();
 
         Relation relationEtt = objectFactory.createRelationerTYPERelation();
-        // relationEtt.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_1_TYP)));
+        System.out.println("Relation1_TYP: " + re.getField(PKNODPLUS.RELATION_1_TYP));
+        System.out.println("Relation2_TYP: " + re.getField(PKNODPLUS.RELATION_2_TYP));
+        // relationEtt.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_1_TYP)));  //TODO
         RelationPersonIdTYPE relationEttPnr = new RelationPersonIdTYPE();
         relationEttPnr.setPersonNr(re.getField(PKNODPLUS.RELATION_1_PNR));
         relationEtt.setRelationId(relationEttPnr);
         relationer.getRelation().add(relationEtt);
 
         Relation relationTvå = objectFactory.createRelationerTYPERelation();
-        // relationTvå.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_2_TYP)));
+        // relationTvå.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_2_TYP)));   //TODO
         RelationPersonIdTYPE relationTvåPnr = new RelationPersonIdTYPE();
         relationTvåPnr.setPersonNr(re.getField(PKNODPLUS.RELATION_2_PNR));
         relationTvå.setRelationId(relationTvåPnr);
