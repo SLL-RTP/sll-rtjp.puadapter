@@ -15,6 +15,8 @@
  */
 package se.sll.rtjp.puadapter.lookupresident;
 
+import java.nio.charset.Charset;
+
 import org.mule.api.transformer.TransformerException;
 import org.mule.transformer.AbstractTransformer;
 import org.mule.transformer.types.DataTypeFactory;
@@ -66,6 +68,7 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
      */
     @Override
     protected Object doTransform(Object src, String enc) throws TransformerException {
+
         System.out.println("line: <" + src + ">");
 
         // Create helper objects
@@ -92,17 +95,25 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         PersonpostTYPE personPost = objectFactory.createPersonpostTYPE();
         String avregOrsak = re.getField(PKNODPLUS.AVGÅNGSKOD);
         if (!avregOrsak.equals("") && !avregOrsak.equals("6")) {
-            personPost.setAvregistrering(getAvregistreringTypeFromSnodResponse(
+            if (re.getField(PKNODPLUS.CIVILSTÅND).equals("6")) {
+                personPost.setAvregistrering(getAvregistreringTypeFromSnodResponse(
+                        re.getField(PKNODPLUS.CIVILSTÅNDSDATUM), "1"));
+            } else {
+                personPost.setAvregistrering(getAvregistreringTypeFromSnodResponse(
                     re.getField(PKNODPLUS.SENASTE_REG_DATUM), avregOrsak));
+            }
         }
 
         // Create and populate the CivilstandTYPE element.
-        CivilstandTYPE civstand = objectFactory.createCivilstandTYPE();
-        civstand.setCivilstandsdatum(re.getField(PKNODPLUS.CIVILSTÅNDSDATUM));
-        civstand.setCivilstandKod(getCivilstandKodTYPEFromKod(re.getField(PKNODPLUS.CIVILSTÅND)));
-        personPost.setCivilstand(civstand);
+        if (!re.getField(PKNODPLUS.CIVILSTÅND).equals("6")) {
+            CivilstandTYPE civstand = objectFactory.createCivilstandTYPE();
+            civstand.setCivilstandsdatum(re.getField(PKNODPLUS.CIVILSTÅNDSDATUM));
+            civstand.setCivilstandKod(getCivilstandKodTYPEFromKod(re.getField(PKNODPLUS.CIVILSTÅND)));
+            personPost.setCivilstand(civstand);
+        }
 
-        /*FodelseTYPE fodelse = objectFactory.createFodelseTYPE(); // TODO - vi har väl inget annat än födelsedatum i PU?
+        // TODO - PU does not expose any birth info except for the date?
+        /*FodelseTYPE fodelse = objectFactory.createFodelseTYPE(); 
         HemortSverigeTYPE hemortSverige = objectFactory.createHemortSverigeTYPE();
         // hemortSverige.setFodelseforsamling(value) ????
         // hemortSverige.setFodelselanKod(); ???
@@ -119,8 +130,7 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
 
         SvenskAdressTYPE svenskAdress = objectFactory.createSvenskAdressTYPE();
         svenskAdress.setFastighetsbeteckning(re.getField(PKNODPLUS.FASTIGHETSBETECKNING));
-        svenskAdress.setFolkbokforingsdatum(re.getField(PKNODPLUS.SENASTE_REG_DATUM)); // TODO Kanske första folkbokföring
-                                                                                       // som menas?
+        svenskAdress.setFolkbokforingsdatum(re.getField(PKNODPLUS.FOLKF_ÅR_FASTIGHET));
         svenskAdress.setForsamlingKod(re.getField(PKNODPLUS.FÖRSAMLING));
         svenskAdress.setKommunKod(re.getField(PKNODPLUS.KOMMUN));
         svenskAdress.setLanKod(re.getField(PKNODPLUS.LÄN));
@@ -131,7 +141,8 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         svenskAdress.setCareOf(re.getField(PKNODPLUS.FBF_CO_ADRESS));
         personPost.setFolkbokforingsadress(svenskAdress);
 
-        personPost.setHanvisningsPersonNr(re.getField(PKNODPLUS.AKTUELLT_PERSONNUMMER));
+        // PU automatically follows links for Hanvisningsnummer and returns information for the most current identity.
+        // personPost.setHanvisningsPersonNr();
 
         // personPost.setInvandring(value) // TODO!
         
@@ -139,11 +150,11 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
         personPost.setKon(konSiffra % 2 == 0 ? KonTYPE.K : KonTYPE.M);
 
         NamnTYPE namnType = objectFactory.createNamnTYPE();
-        namnType.setAviseringsnamn(re.getField(PKNODPLUS.AVISERINGSNAMN));
+        namnType.setAviseringsnamn(new String(re.getField(PKNODPLUS.AVISERINGSNAMN).getBytes(Charset.forName("UTF-8")), Charset.forName("UTF-8")));
         namnType.setEfternamn(re.getField(PKNODPLUS.EFTERNAMN));
         namnType.setFornamn(re.getField(PKNODPLUS.FÖRNAMN));
         namnType.setMellannamn(re.getField(PKNODPLUS.MELLANNAMN));
-        // Tilltalsnamn finns redan markerat med / i Förnamn, går inte att få ut separat
+        // Tilltalsnamn is already indicated with '/' around the name(/s) to use.
         personPost.setNamn(namnType);
 
         personPost.setPersonId(re.getField(PKNODPLUS.AKTUELLT_PERSONNUMMER));
@@ -230,7 +241,10 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
             return AvregistreringsorsakKodKomplettTYPE.GN;
             /*
              * case "6": return AvregistreringsorsakKodKomplettTYPE.AV;
-             */// Detta skall väl ändå vara en nationell tjänst? Då är väl inte detta en Avregistrering?
+             */
+            // Is this supposed to be a national service? PU is Stockholm/Gotland centric
+            // and indicates moves to other counties as '6'. But as far as the national
+            // contract is concerned, the person is still living i Sweden, no?
         default:
             return null;
         }
