@@ -44,8 +44,8 @@ public class LookupSpecificationFilter {
         // Filter Avregistreringsorsak
         try {
             if (fp.getFilterAvregOrsak() != null) {
-                if (fp.getFilterAvregOrsak().equals(
-                        resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKod())) {
+                if (fp.getFilterAvregOrsak().toString().equals(
+                        resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString())) {
                     isInAvregFilter = true;
                 }
             } else {

@@ -87,7 +87,7 @@ public class SnodResponseToResidentTypeTransformer extends AbstractTransformer {
     private ResidentType createAndPopulateResidentType(ResidentExtractor re, ObjectFactory objectFactory) {
         ResidentType transformedResident = objectFactory.createResidentType();
         transformedResident.setSenasteAndringFolkbokforing(re.getField(PKNODPLUS.SENASTE_REG_DATUM));
-        transformedResident.setSekretessmarkering(JaNejTYPE.N);
+        transformedResident.setSekretessmarkering(re.getField(PKNODPLUS.RETURKOD).equals("0002") ? JaNejTYPE.J : JaNejTYPE.N);
         return transformedResident;
     }
 

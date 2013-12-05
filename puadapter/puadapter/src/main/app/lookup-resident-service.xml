@@ -8,9 +8,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
-    <catch-exception-strategy name="Catch_Exception_Strategy">
-        <logger message="Inne i Cztch" level="INFO" doc:name="Logger"/>
-    </catch-exception-strategy>
     <flow name="LookupResident-flow" doc:name="LookupResident-flow">
         <http:inbound-endpoint exchange-pattern="request-response" address="${LOOKUPRESIDENT_INBOUND_URL}" doc:name="HTTP"/>
         <object-to-string-transformer doc:name="Object to String"/>
@@ -26,6 +23,8 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
             <flow-ref name="fetch-resident-data" doc:name="Fetch Resident info"/>
         </foreach>
         
+        <expression-component doc:name="Filter responselist"><![CDATA[ se.sll.rtjp.puadapter.lookupresident.filter.LookupSpecificationFilter.filterResidentList(flowVars['responses'], flowVars['filterParams']) ]]> </expression-component>
+        
         <cxf:jaxws-service serviceClass="riv.population.residentmaster.lookupresidentforfullprofile.v1.rivtabp21.LookupResidentForFullProfileResponderInterface"  doc:name="LookupResident-service" />
         <component class="se.sll.rtjp.puadapter.lookupresident.LookupResidentServiceImpl" doc:name="Java Service Impl"/>
         <response>
@@ -34,8 +33,8 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     </flow>
     <sub-flow name="fetch-resident-data" doc:name="fetch-resident-data">
         <set-variable variableName="currentPnr" value="#[xpath('text()').data]" doc:name="Fetch current Pnr with XPath"/>
-        <logger message="Bearbetar pnr: #[variable:currentPnr]" level="INFO" doc:name="Log current Pnr"/>
-        <https:outbound-endpoint exchange-pattern="request-response" method="GET" address="${PU_SNOD_INTERNET_URL}" encoding="ISO-8859-1" connector-ref="httpConnector" contentType="text/plain" doc:name="Call PU via SNOD" mimeType="text/plain" responseTransformer-refs="objToStringTransformer SnodResponseToResidentTransformer"/>
-        <expression-component doc:name="Add resident to List"><![CDATA[flowVars['responses'].add(payload); se.sll.rtjp.puadapter.lookupresident.filter.LookupSpecificationFilter.filterResidentList(flowVars['responses'], flowVars['filterParams'])]]></expression-component>
+        <logger message="Processing patientid: #[variable:currentPnr]" level="INFO" doc:name="Log current Pnr"/>
+        <https:outbound-endpoint exchange-pattern="request-response" method="GET" address="${PU_SNOD_URL}?arg=#[variable:currentPnr]" encoding="ISO-8859-1" connector-ref="httpConnector" contentType="text/plain" doc:name="Call PU via SNOD" mimeType="text/plain" responseTransformer-refs="objToStr SnodResponseToResidentTransformer"/>
+        <expression-component doc:name="Add resident to List"><![CDATA[flowVars['responses'].add(payload)]]></expression-component>
     </sub-flow>
 </mule>

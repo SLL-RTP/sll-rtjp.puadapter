@@ -29,6 +29,27 @@ package se.sll.rtjp.puadapter.extractor;
 public enum PKNODPLUS implements SnodFieldsInterface {
 
     // <FÄLTNAMN>                   (<Startindex>, <Slutindex>),
+    /** Längden på svarssträngen, räknat fr.o.m. detta fält t.o.m det avslutande underlinetecknet */
+    SVARSLÄNGD                      (1, 4),
+    /**
+     * Status från anropet. [För många koder för att lista alla här, tar de viktigaste - red]
+     * 
+     * 0000 = Tjänsten utförd
+     * 0001 = Sökt person saknas i registren
+     * 0002 = Sökt person har skyddad identitet och är därför anonymiserad
+     * 0003 = Personen utflyttad och saknas i externt system
+     * 0019 = Tekniskt problem vid hämtning från externt system
+     * 0020 = Felaktigt format på inmatat personnummer
+     * 0101 = Felaktigt format på inmatat reservnummer
+     * 0102 = Reservnummer saknas i registren
+     * 0300 = Programfel i tjänsten
+     * 0301 = Databasfel
+     * 0305 = Ogiltlig single-signon-biljett
+     * 0306 = Användaren saknar behörighet
+     * 0307 = Tekniskt fel i tjänsten
+     * 0308 = Databasfel eller samtidig uppdatering av annan användare
+     */
+    RETURKOD                        (4, 8),
     /** Den eftersökta personidentiteten enligt anropet */
     SÖKT_PERSONNUMMER               (8,20),
     /** Födelsedatum på 8 siffror, ex "19010101" */
