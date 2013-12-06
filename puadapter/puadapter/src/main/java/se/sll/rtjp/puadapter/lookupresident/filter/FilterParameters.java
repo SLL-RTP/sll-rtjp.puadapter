@@ -15,7 +15,6 @@
  */
 package se.sll.rtjp.puadapter.lookupresident.filter;
 
-import riv.population.residentmaster.v1.AvregistreringsorsakKodTYPE;
 import riv.population.residentmaster.v1.JaNejTYPE;
 
 /**
@@ -25,22 +24,16 @@ public class FilterParameters {
 
     /** The currently active filter for 'Sekretessmarkering', or null if inactive. */
     private JaNejTYPE filterSekretessMarkering;
-    /** The currently active filter for 'Avregistreringsorsak', or null if inactive. */
-    private AvregistreringsorsakKodTYPE filterAvregOrsak;
+    /**
+     * The currently active filter for 'Avregistreringsorsak',
+     * "" if only non-unregistered persons should be returned or null if inactive.
+     * Is currently a String since the empty value is not supported by the generated enum.
+     * The wsdl does not allow "" for input, but the spec. requires handling it as a parameter.
+     * So this is a temporary fix until that bug is sorted out.
+     */
+    private String filterAvregOrsak;
     /** The currently active filter for 'SenasteAndringFolkbokforing', or null if inactive. */
     private String filterSenasteAndringFBF;
-    
-    /**
-     * Standard constructor conveniently populating all available fields with data.
-     * @param filterAvregOrsak The currently active filter for 'Avregistreringsorsak', or null if inactive.
-     * @param filterSekretessMarkering The currently active filter for 'Sekretessmarkering', or null if inactive.
-     * @param senasteAndringFBF The currently active filter for 'SenasteAndringFolkbokforing', or null if inactive.
-     */
-    public FilterParameters(AvregistreringsorsakKodTYPE filterAvregOrsak, JaNejTYPE filterSekretessMarkering, String senasteAndringFBF) {
-        this.filterSekretessMarkering = filterSekretessMarkering;
-        this.filterAvregOrsak = filterAvregOrsak;
-        this.filterSenasteAndringFBF = senasteAndringFBF;
-    }
     
     /**
      * Used when created from Mule flow from XPATH where all incoming data is strings.
@@ -51,7 +44,7 @@ public class FilterParameters {
      */
     public FilterParameters(String filterAvregOrsak, String filterSekretessMarkering, String senasteAndringFBF) {
        this.filterSekretessMarkering = (filterSekretessMarkering != null && filterSekretessMarkering != "") ? JaNejTYPE.valueOf(filterSekretessMarkering) : null;
-       this.filterAvregOrsak = (filterAvregOrsak != null && filterAvregOrsak != "") ? AvregistreringsorsakKodTYPE.valueOf(filterAvregOrsak) : null;
+       this.filterAvregOrsak = (filterAvregOrsak != null) ? filterAvregOrsak : null;
        this.filterSenasteAndringFBF = senasteAndringFBF != null && !senasteAndringFBF.equals("") ? senasteAndringFBF : null;
     }
     
@@ -70,13 +63,13 @@ public class FilterParameters {
     /**
      * @return the filterAvregDatum
      */
-    public AvregistreringsorsakKodTYPE getFilterAvregOrsak() {
+    public String getFilterAvregOrsak() {
         return filterAvregOrsak;
     }
     /**
      * @param filterAvregOrsak the filterAvregDatum to set
      */
-    public void setFilterAvregOrsak(AvregistreringsorsakKodTYPE filterAvregOrsak) {
+    public void setFilterAvregOrsak(String filterAvregOrsak) {
         this.filterAvregOrsak = filterAvregOrsak;
     }
     /**

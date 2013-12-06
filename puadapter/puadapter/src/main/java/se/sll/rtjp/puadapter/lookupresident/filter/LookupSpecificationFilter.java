@@ -44,7 +44,12 @@ public class LookupSpecificationFilter {
         // Filter Avregistreringsorsak
         try {
             if (fp.getFilterAvregOrsak() != null) {
-                if (fp.getFilterAvregOrsak().toString().equals(
+                if (fp.getFilterAvregOrsak().equals("")) {
+                    if (resident.getPersonpost().getAvregistrering() == null
+                            || resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett() == null) {
+                        isInAvregFilter = true;
+                    }
+                } else if (fp.getFilterAvregOrsak().equals(
                         resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString())) {
                     isInAvregFilter = true;
                 }
@@ -66,8 +71,7 @@ public class LookupSpecificationFilter {
         // Filter SenasteAndringFolkbokforing
         try {
             if (fp.getFilterSenasteAndringFBF() != null) {
-                if (Long.valueOf(resident.getSenasteAndringFolkbokforing()) > Long.valueOf(fp
-                        .getFilterSenasteAndringFBF())) {
+                if (Long.valueOf(resident.getSenasteAndringFolkbokforing()) > Long.valueOf(fp.getFilterSenasteAndringFBF())) {
                     isInRegDatumFilter = true;
                 }
             } else {

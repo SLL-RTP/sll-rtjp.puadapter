@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
         <object-to-string-transformer doc:name="Object to String"/>
         
         <set-variable variableName="responses" value="#[new ArrayList()]" doc:name="Create ResidentType-list"/>
-        <set-variable variableName="filterAvregOrsak" value="#[xpath('//urn1:Avregistreringsorsak') == null ? null : xpath('//urn1:Avregistreringsorsak/text()').text]" doc:name="Variable"/>
+        <set-variable variableName="filterAvregOrsak" value="#[xpath('//urn1:Avregistreringsorsak') == null ? null : xpath('//urn1:Avregistreringsorsak').text]" doc:name="Variable"/>
         <set-variable variableName="filterSekretessmarkering" value="#[xpath('//urn1:Sekretessmarkering') == null ? null : xpath('//urn1:Sekretessmarkering/text()').text]" doc:name="Variable"/>
         <set-variable variableName="filterSenasteAndringFolkbokforing" value="#[xpath('//urn1:SenasteAndringFolkbokforing') == null ? null : xpath('//urn1:SenasteAndringFolkbokforing/text()').text]" doc:name="Variable"/>
         

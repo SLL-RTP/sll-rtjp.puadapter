@@ -34,15 +34,12 @@ import riv.population.residentmaster.lookupresidentforfullprofileresponder.v1.Ob
  */
 public class LookupResidentServiceImpl implements LookupResidentForFullProfileResponderInterface {
 
-    Logger testlogger = Logger.getLogger(this.getClass());
-
     @Override
     @WebResult(name = "LookupResidentForFullProfileResponse", targetNamespace = "urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1", partName = "parameters")
     @WebMethod(operationName = "LookupResidentForFullProfile", action = "urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile")
     public LookupResidentForFullProfileResponseType lookupResidentForFullProfile(
             @WebParam(partName = "LogicalAddress", name = "LogicalAddress", targetNamespace = "urn:riv:itintegration:registry:1", header = true) String arg0,
             @WebParam(partName = "parameters", name = "LookupResidentForFullProfile", targetNamespace = "urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1") LookupResidentForFullProfileType arg1) {
-        testlogger.info("Inne i metod!");
         ObjectFactory of = new ObjectFactory();
         LookupResidentForFullProfileResponseType ret = of.createLookupResidentForFullProfileResponseType();
         return ret;
