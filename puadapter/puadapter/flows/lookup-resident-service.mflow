@@ -1,37 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="lookup-resident-service">
-    <global-element name="Catch Exception Strategy" type="http://www.mulesoft.org/schema/mule/core/catch-exception-strategy" entity-id="Catch Exception Strategy#1">
-        <properties>
-            <property name=""/>
-            <property name="when"/>
-            <property name="name" value="Catch_Exception_Strategy"/>
-            <property name="enableNotifications"/>
-            <property name="auxiliary;index" value="1"/>
-        </properties>
-        <compartment>
-            <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
-                <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
-                    <graphicalData x="0" y="0" width="0" height="0"/>
-                    <properties>
-                        <property name="message" value="Inne i Cztch"/>
-                        <property name="category"/>
-                        <property name="level" value="INFO"/>
-                        <property name="auxiliary;index" value="2"/>
-                    </properties>
-                </pattern>
-            </lane>
-        </compartment>
-    </global-element>
-    <flow SubFlow="false" name="LookupResident-flow" entity-id="6ae24bee-9260-4d0b-a687-0111c1ba8eef">
+    <flow SubFlow="false" name="LookupResident-flow" entity-id="425d5a7b-10ef-43ec-9a5a-3cb1978ba1c9">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
             <property name="initialState"/>
             <property name="bussinessEventsLabel"/>
-            <property name="auxiliary;index" value="3"/>
+            <property name="auxiliary;index" value="1"/>
             <property name="tracking:enable-default-events"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -56,7 +34,7 @@
                     <property name="responseTransformer-refs"/>
                     <property name="method"/>
                     <property name="user"/>
-                    <property name="auxiliary;index" value="4"/>
+                    <property name="auxiliary;index" value="2"/>
                     <property name="responseTimeout"/>
                     <property name="mimeType"/>
                     <property name="connector-ref"/>
@@ -68,7 +46,7 @@
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
                     <property name="encoding"/>
-                    <property name="auxiliary;index" value="5"/>
+                    <property name="auxiliary;index" value="3"/>
                     <property name="mimeType"/>
                 </properties>
             </pattern>
@@ -78,16 +56,16 @@
                     <property name="variableName" value="responses"/>
                     <property name="value" value="#[new ArrayList()]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="6"/>
+                    <property name="auxiliary;index" value="4"/>
                 </properties>
             </pattern>
             <pattern name="Variable" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="filterAvregOrsak"/>
-                    <property name="value" value="#[xpath('//urn1:Avregistreringsorsak') == null ? null : xpath('//urn1:Avregistreringsorsak/text()').text]"/>
+                    <property name="value" value="#[xpath('//urn1:Avregistreringsorsak') == null ? null : xpath('//urn1:Avregistreringsorsak').text]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="7"/>
+                    <property name="auxiliary;index" value="5"/>
                 </properties>
             </pattern>
             <pattern name="Variable" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#3">
@@ -96,7 +74,7 @@
                     <property name="variableName" value="filterSekretessmarkering"/>
                     <property name="value" value="#[xpath('//urn1:Sekretessmarkering') == null ? null : xpath('//urn1:Sekretessmarkering/text()').text]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="8"/>
+                    <property name="auxiliary;index" value="6"/>
                 </properties>
             </pattern>
             <pattern name="Variable" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#4">
@@ -105,7 +83,7 @@
                     <property name="variableName" value="filterSenasteAndringFolkbokforing"/>
                     <property name="value" value="#[xpath('//urn1:SenasteAndringFolkbokforing') == null ? null : xpath('//urn1:SenasteAndringFolkbokforing/text()').text]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="9"/>
+                    <property name="auxiliary;index" value="7"/>
                 </properties>
             </pattern>
             <pattern name="Create FilterParameters" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#1">
@@ -114,7 +92,7 @@
                     <property name="expression" value=" flowVars['filterParams'] = new se.sll.rtjp.puadapter.lookupresident.filter.FilterParameters(flowVars['filterAvregOrsak'], flowVars['filterSekretessmarkering'], flowVars['filterSenasteAndringFolkbokforing'])"/>
                     <property name="file"/>
                     <property name="evaluator"/>
-                    <property name="auxiliary;index" value="10"/>
+                    <property name="auxiliary;index" value="8"/>
                 </properties>
             </pattern>
             <scope name="For Each Pnr from req" type="http://www.mulesoft.org/schema/mule/core/foreach" entity-id="For Each#1">
@@ -124,20 +102,29 @@
                     <property name="rootMessageVariableName"/>
                     <property name="batchSize"/>
                     <property name="collection" value="xpath('//urn1:personId')"/>
-                    <property name="auxiliary;index" value="11"/>
+                    <property name="auxiliary;index" value="9"/>
                 </properties>
                 <compartment entity-id="compartment#1">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
                         <pattern name="Fetch Resident info" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
 <property name="name" value="fetch-resident-data"/>
-<property name="auxiliary;index" value="12"/>
+<property name="auxiliary;index" value="10"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </scope>
+            <pattern name="Filter responselist" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="expression" value=" se.sll.rtjp.puadapter.lookupresident.filter.LookupSpecificationFilter.filterResidentList(flowVars['responses'], flowVars['filterParams'])  "/>
+                    <property name="file"/>
+                    <property name="evaluator"/>
+                    <property name="auxiliary;index" value="11"/>
+                </properties>
+            </pattern>
             <pattern name="LookupResident-service" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
@@ -154,27 +141,27 @@
                     <property name="mtomEnabled"/>
                     <property name="soapVersion"/>
                     <property name="enableMuleSoapHeaders"/>
-                    <property name="auxiliary;index" value="13"/>
+                    <property name="auxiliary;index" value="12"/>
                 </properties>
             </pattern>
             <pattern name="Java Service Impl" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="class" value="se.sll.rtjp.puadapter.lookupresident.LookupResidentServiceImpl"/>
-                    <property name="auxiliary;index" value="14"/>
+                    <property name="auxiliary;index" value="13"/>
                 </properties>
             </pattern>
-            <response index="15" entity-id="response#1">
+            <response index="14" entity-id="response#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <compartment entity-id="compartment#2">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
-                        <pattern name="Filter and Add residents to List" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#2">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
+                        <pattern name="Filter and Add residents to List" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#3">
                             <graphicalData x="0" y="0" width="0" height="0"/>
                             <properties>
 <property name="expression" value=" payload.getResident().addAll(flowVars['responses']); "/>
 <property name="file"/>
 <property name="evaluator"/>
-<property name="auxiliary;index" value="16"/>
+<property name="auxiliary;index" value="15"/>
                             </properties>
                         </pattern>
                     </lane>
@@ -182,16 +169,16 @@
             </response>
         </lane>
     </flow>
-    <flow SubFlow="true" name="fetch-resident-data" entity-id="a2d083c3-4183-441f-8110-6fed89efe81f">
+    <flow SubFlow="true" name="fetch-resident-data" entity-id="2cc2864d-d473-406d-ae1c-9fd0e97c1f4a">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
             <property name="initialState"/>
             <property name="bussinessEventsLabel"/>
-            <property name="auxiliary;index" value="17"/>
+            <property name="auxiliary;index" value="16"/>
             <property name="tracking:enable-default-events"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
             <graphicalData x="0" y="0" width="0" height="0"/>
             <pattern name="Fetch current Pnr with XPath" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#5">
                 <graphicalData x="0" y="0" width="0" height="0"/>
@@ -199,16 +186,16 @@
                     <property name="variableName" value="currentPnr"/>
                     <property name="value" value="#[xpath('text()').data]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="18"/>
+                    <property name="auxiliary;index" value="17"/>
                 </properties>
             </pattern>
-            <pattern name="Log current Pnr" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#2">
+            <pattern name="Log current Pnr" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="Logger#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="message" value="Bearbetar pnr: #[variable:currentPnr]"/>
+                    <property name="message" value="Processing patientid: #[variable:currentPnr]"/>
                     <property name="category"/>
                     <property name="level" value="INFO"/>
-                    <property name="auxiliary;index" value="19"/>
+                    <property name="auxiliary;index" value="18"/>
                 </properties>
             </pattern>
             <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="Call PU via SNOD" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#2">
@@ -219,10 +206,10 @@
                     <property name="password"/>
                     <property name="tracking:enable-default-events"/>
                     <property name="exchange-pattern" value="request-response"/>
-                    <property name="encoding" value="ISO-8859-1"/>
+                    <property name="encoding" value="ISO-8859-15"/>
                     <property name="path"/>
-                    <property name="responseTransformer-refs" value="objToStringTransformer SnodResponseToResidentTransformer"/>
-                    <property name="auxiliary;index" value="20"/>
+                    <property name="responseTransformer-refs" value="SnodResponseToResidentTransformer"/>
+                    <property name="auxiliary;index" value="19"/>
                     <property name="connector-ref-outbound" value="httpConnector"/>
                     <property name="mimeType" value="text/plain"/>
                     <property name="responseTimeout"/>
@@ -235,19 +222,19 @@
                     <property name="ref"/>
                     <property name="httpLabel"/>
                     <property name="transformer-refs"/>
-                    <property name="address" value="${PU_SNOD_INTERNET_URL}"/>
+                    <property name="address" value="${PU_SNOD_URL}?arg=#[variable:currentPnr]"/>
                     <property name="method" value="GET"/>
                     <property name="user"/>
                     <property name="connector-ref" value="httpConnector"/>
                 </properties>
             </endpoint>
-            <pattern name="Add resident to List" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#3">
+            <pattern name="Add resident to List" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#4">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="expression" value="flowVars['responses'].add(payload); se.sll.rtjp.puadapter.lookupresident.filter.LookupSpecificationFilter.filterResidentList(flowVars['responses'], flowVars['filterParams'])"/>
+                    <property name="expression" value="flowVars['responses'].add(payload)"/>
                     <property name="file"/>
                     <property name="evaluator"/>
-                    <property name="auxiliary;index" value="21"/>
+                    <property name="auxiliary;index" value="20"/>
                 </properties>
             </pattern>
         </lane>

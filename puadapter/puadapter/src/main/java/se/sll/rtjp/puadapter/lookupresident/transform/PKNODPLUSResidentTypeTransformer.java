@@ -15,15 +15,12 @@
  */
 package se.sll.rtjp.puadapter.lookupresident.transform;
 
-import java.nio.charset.Charset;
+import java.util.Scanner;
 
 import org.mule.api.transformer.TransformerException;
-import org.mule.transformer.AbstractTransformer;
 import org.mule.transformer.types.DataTypeFactory;
+import org.mule.transport.http.ReleasingInputStream;
 
-import riv.population.residentmaster.v1.AvregistreringTYPE;
-import riv.population.residentmaster.v1.AvregistreringsorsakKodKomplettTYPE;
-import riv.population.residentmaster.v1.CivilstandKodTYPE;
 import riv.population.residentmaster.v1.CivilstandTYPE;
 import riv.population.residentmaster.v1.JaNejTYPE;
 import riv.population.residentmaster.v1.KonTYPE;
@@ -38,7 +35,6 @@ import riv.population.residentmaster.v1.ResidentType;
 import riv.population.residentmaster.v1.SvenskAdressTYPE;
 import se.sll.rtjp.puadapter.extractor.PKNODPLUS;
 import se.sll.rtjp.puadapter.extractor.ResidentExtractor;
-import se.sll.rtjp.puadapter.extractor.SnodFieldsInterface;
 
 /**
  * <p>
@@ -54,7 +50,7 @@ public class PKNODPLUSResidentTypeTransformer extends SNODAbstractTransformer {
      */
     public PKNODPLUSResidentTypeTransformer() {
         super();
-        this.registerSourceType(DataTypeFactory.STRING);
+        this.registerSourceType(DataTypeFactory.create(ReleasingInputStream.class));
         this.setReturnDataType(DataTypeFactory.create(ResidentType.class));
     }
 
@@ -69,11 +65,16 @@ public class PKNODPLUSResidentTypeTransformer extends SNODAbstractTransformer {
      */
     @Override
     protected Object doTransform(Object src, String enc) throws TransformerException {
-
-        System.out.println("line: <" + src + ">");
+        ReleasingInputStream test = (ReleasingInputStream) src;
+        Scanner streamScanner = new Scanner(test, "ISO-8859-15");
+        streamScanner.useDelimiter("\\A");
+        String inputStreamString = streamScanner.next();
+        streamScanner.close();
+        
+        System.out.println("line: <" + inputStreamString + ">");
         
         // Create helper objects
-        setResidentExtractor(new ResidentExtractor((String) src));
+        setResidentExtractor(new ResidentExtractor(inputStreamString));
         ObjectFactory objectFactory = new ObjectFactory();
 
         // Create and populate ResidentType root object

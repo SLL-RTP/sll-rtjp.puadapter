@@ -34,7 +34,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <sub-flow name="fetch-resident-data" doc:name="fetch-resident-data">
         <set-variable variableName="currentPnr" value="#[xpath('text()').data]" doc:name="Fetch current Pnr with XPath"/>
         <logger message="Processing patientid: #[variable:currentPnr]" level="INFO" doc:name="Log current Pnr"/>
-        <https:outbound-endpoint exchange-pattern="request-response" method="GET" address="${PU_SNOD_URL}?arg=#[variable:currentPnr]" encoding="ISO-8859-1" connector-ref="httpConnector" contentType="text/plain" doc:name="Call PU via SNOD" mimeType="text/plain" responseTransformer-refs="objToStr SnodResponseToResidentTransformer"/>
+        <https:outbound-endpoint exchange-pattern="request-response" method="GET" address="${PU_SNOD_URL}?arg=#[variable:currentPnr]" encoding="ISO-8859-15" connector-ref="httpConnector" contentType="text/plain" doc:name="Call PU via SNOD" mimeType="text/plain" responseTransformer-refs="SnodResponseToResidentTransformer"/>
         <expression-component doc:name="Add resident to List"><![CDATA[flowVars['responses'].add(payload)]]></expression-component>
     </sub-flow>
 </mule>
