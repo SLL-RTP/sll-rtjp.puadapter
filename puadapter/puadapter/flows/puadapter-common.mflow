@@ -172,9 +172,9 @@
         <properties>
             <property name="returnClass" value="riv.population.residentmaster.v1.ResidentType"/>
             <property name="ignoreBadInput"/>
-            <property name="name" value="SnodResponseToResidentTransformer"/>
-            <property name="encoding" value="ISO-8859-1"/>
-            <property name="class" value="se.sll.rtjp.puadapter.lookupresident.transform.PKNODPLUSResidentTypeTransformer"/>
+            <property name="name" value="pknodplus-to-residenttype-transformer"/>
+            <property name="encoding" value="ISO-8859-15"/>
+            <property name="class" value="se.sll.rtjp.puadapter.lookupresident.transform.PKNODPLUSToResidentTypeTransformer"/>
             <property name="auxiliary;index" value="22"/>
             <property name="mimeType"/>
         </properties>

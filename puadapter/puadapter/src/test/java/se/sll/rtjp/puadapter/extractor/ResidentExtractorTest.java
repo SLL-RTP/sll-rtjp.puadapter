@@ -19,6 +19,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import se.sll.rtjp.puadapter.extractor.fields.PKNODPLUS;
+
 public class ResidentExtractorTest {
 
     @Test

@@ -33,8 +33,8 @@ import riv.population.residentmaster.v1.UtlandsadressTYPE;
 import riv.population.residentmaster.v1.RelationerTYPE.Relation;
 import riv.population.residentmaster.v1.ResidentType;
 import riv.population.residentmaster.v1.SvenskAdressTYPE;
-import se.sll.rtjp.puadapter.extractor.PKNODPLUS;
 import se.sll.rtjp.puadapter.extractor.ResidentExtractor;
+import se.sll.rtjp.puadapter.extractor.fields.PKNODPLUS;
 
 /**
  * <p>
@@ -42,13 +42,13 @@ import se.sll.rtjp.puadapter.extractor.ResidentExtractor;
  * the RIV response specification.
  * </p>
  */
-public class PKNODPLUSResidentTypeTransformer extends SNODAbstractTransformer {
+public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer {
 
     /**
      * Constructor according to Mule standard that registers the transformer with Mule properly and defines what source
      * and target types it handles.
      */
-    public PKNODPLUSResidentTypeTransformer() {
+    public PKNODPLUSToResidentTypeTransformer() {
         super();
         this.registerSourceType(DataTypeFactory.create(ReleasingInputStream.class));
         this.setReturnDataType(DataTypeFactory.create(ResidentType.class));
@@ -136,7 +136,11 @@ public class PKNODPLUSResidentTypeTransformer extends SNODAbstractTransformer {
         svenskAdress.setForsamlingKod(getValueOrNull(PKNODPLUS.FÖRSAMLING));
         svenskAdress.setKommunKod(getValueOrNull(PKNODPLUS.KOMMUN));
         svenskAdress.setLanKod(getValueOrNull(PKNODPLUS.LÄN));
-        svenskAdress.setPostNr(getValueOrNull(PKNODPLUS.FBF_POSTNUMMER));
+        String fbfPostNr = getValueOrNull(PKNODPLUS.FBF_POSTNUMMER);
+        if (fbfPostNr != null) {
+            // The postnummer must be 3+2 with a space in the middle to fit the schema, and PU serves it with no space.
+            svenskAdress.setPostNr(fbfPostNr.substring(0, 3) + " " + fbfPostNr.substring(3));
+        }
         svenskAdress.setPostort(getValueOrNull(PKNODPLUS.FBF_POSTORT));
         svenskAdress.setUtdelningsadress1(getValueOrNull(PKNODPLUS.FBF_UTDEL_ADRESS_1));
         svenskAdress.setUtdelningsadress2(getValueOrNull(PKNODPLUS.FBF_UTDEL_ADRESS_2));

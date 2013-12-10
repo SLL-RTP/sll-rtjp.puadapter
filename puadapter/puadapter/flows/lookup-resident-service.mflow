@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="lookup-resident-service">
-    <flow SubFlow="false" name="LookupResident-flow" entity-id="425d5a7b-10ef-43ec-9a5a-3cb1978ba1c9">
+    <flow SubFlow="false" name="LookupResident-flow" entity-id="c8ca5de5-41ac-4bdf-a258-4fcb6739abe2">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
@@ -169,7 +169,7 @@
             </response>
         </lane>
     </flow>
-    <flow SubFlow="true" name="fetch-resident-data" entity-id="2cc2864d-d473-406d-ae1c-9fd0e97c1f4a">
+    <flow SubFlow="true" name="fetch-resident-data" entity-id="9adf2944-39b6-494d-a5f1-be320009b0f8">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
@@ -208,7 +208,7 @@
                     <property name="exchange-pattern" value="request-response"/>
                     <property name="encoding" value="ISO-8859-15"/>
                     <property name="path"/>
-                    <property name="responseTransformer-refs" value="SnodResponseToResidentTransformer"/>
+                    <property name="responseTransformer-refs" value="pknodplus-to-residenttype-transformer"/>
                     <property name="auxiliary;index" value="19"/>
                     <property name="connector-ref-outbound" value="httpConnector"/>
                     <property name="mimeType" value="text/plain"/>

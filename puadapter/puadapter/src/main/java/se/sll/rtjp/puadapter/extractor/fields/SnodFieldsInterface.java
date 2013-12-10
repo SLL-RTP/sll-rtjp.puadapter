@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package se.sll.rtjp.puadapter.extractor;
+package se.sll.rtjp.puadapter.extractor.fields;
 
 /**
  * Defines a common interface for reading start- and end indexes for substringing information from a SNOD response. Each

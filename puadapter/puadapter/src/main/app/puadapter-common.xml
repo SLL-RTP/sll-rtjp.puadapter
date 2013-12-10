@@ -41,7 +41,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
     <https:connector name="httpConnector" doc:name="HTTP\HTTPS">
         <https:tls-server path="${PU_SNOD_TRUSTSTORE}" storePassword="test"/>
     </https:connector>
-    <custom-transformer returnClass="riv.population.residentmaster.v1.ResidentType" class="se.sll.rtjp.puadapter.lookupresident.transform.PKNODPLUSResidentTypeTransformer" name="SnodResponseToResidentTransformer" encoding="ISO-8859-1" doc:name="Java"/>
+    <custom-transformer returnClass="riv.population.residentmaster.v1.ResidentType" class="se.sll.rtjp.puadapter.lookupresident.transform.PKNODPLUSToResidentTypeTransformer" name="pknodplus-to-residenttype-transformer" encoding="ISO-8859-15" doc:name="Java"/>
     <message-properties-transformer scope="outbound" name="setJsonContentType" doc:name="Message Properties">
         <add-message-property key="Content-Type" value="application/json;charset=UTF-8"/>
     </message-properties-transformer>

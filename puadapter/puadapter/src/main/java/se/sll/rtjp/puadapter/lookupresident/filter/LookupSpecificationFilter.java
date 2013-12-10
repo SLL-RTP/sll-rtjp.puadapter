@@ -44,13 +44,22 @@ public class LookupSpecificationFilter {
         // Filter Avregistreringsorsak
         try {
             if (fp.getFilterAvregOrsak() != null) {
-                if (fp.getFilterAvregOrsak().equals("")) {
-                    if (resident.getPersonpost().getAvregistrering() == null
-                            || resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett() == null) {
+                boolean isResidentAvregNullOrEmpty = resident.getPersonpost().getAvregistrering() == null
+                        || resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett() == null
+                        || resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().equals("");
+                if (fp.getFilterAvregOrsak().equals("  ")) {
+                    // For everyone that is not Avregistrerad (two spaces since the schema has a minLen="2")
+                    if (isResidentAvregNullOrEmpty) {
                         isInAvregFilter = true;
                     }
-                } else if (fp.getFilterAvregOrsak().equals(
-                        resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString())) {
+                } else if (fp.getFilterAvregOrsak().equals("OO")) {
+                    // For everyone that has AvregKod != "AV” or ”GN” 
+                    if (!isResidentAvregNullOrEmpty && !"AV".equals(resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString()) &&
+                            !"GN".equals(resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString())) {
+                        isInAvregFilter = true;
+                    }
+                } else if (!isResidentAvregNullOrEmpty && fp.getFilterAvregOrsak().equals(resident.getPersonpost().getAvregistrering().getAvregistreringsorsakKodKomplett().toString())) {
+                    // For everyone when the incoming AvregOrsak matches the AvregOrsak from the resident
                     isInAvregFilter = true;
                 }
             } else {

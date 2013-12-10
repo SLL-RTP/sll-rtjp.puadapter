@@ -13,7 +13,9 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package se.sll.rtjp.puadapter.extractor;
+package se.sll.rtjp.puadapter.extractor.fields;
+
+import se.sll.rtjp.puadapter.extractor.ResidentExtractor;
 
 /**
  * <p>SNOD field specification for the "PKNODPLUS" PU service. Used by {@link ResidentExtractor}

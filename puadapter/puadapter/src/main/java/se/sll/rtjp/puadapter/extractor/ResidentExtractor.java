@@ -15,6 +15,8 @@
  */
 package se.sll.rtjp.puadapter.extractor;
 
+import se.sll.rtjp.puadapter.extractor.fields.SnodFieldsInterface;
+
 public class ResidentExtractor {
 
     private static final int SNOD_DATA_START_POSITION = 9;
