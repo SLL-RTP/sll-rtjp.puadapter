@@ -17,8 +17,8 @@
  specific language governing permissions and limitations
  under the License.
  -->		
-<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:tns='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1' xmlns:core='urn:riv:population:residentmaster:1' targetNamespace='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1' elementFormDefault='qualified' attributeFormDefault='unqualified' version='1.1'>
-  <xs:import schemaLocation='../../core_components/population_residentmaster_1.1.xsd' namespace='urn:riv:population:residentmaster:1' />
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:tns='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1' xmlns:core='urn:riv:population:residentmaster:1' targetNamespace='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1' elementFormDefault='qualified' attributeFormDefault='unqualified' version='1.0'>
+  <xs:import schemaLocation='../../core_components/population_residentmaster_1.0.xsd' namespace='urn:riv:population:residentmaster:1' />
   <xs:element name='LookupResidentForFullProfile' type='tns:LookupResidentForFullProfileType' />
 
   <xs:element name='LookupResidentForFullProfileResponse' type='tns:LookupResidentForFullProfileResponseType' />
@@ -40,10 +40,9 @@
 
   <xs:complexType name='LookUpSpecificationType'>
     <xs:sequence>
-      <xs:element name='Avregistreringsorsak' type='xs:string' minOccurs='0' maxOccurs='unbounded' minLength='2' maxLength='2'/>
+      <xs:element name='Avregistreringsorsak' type='core:AvregistreringsorsakKodTYPE' minOccurs='0' />
       <xs:element name='Sekretessmarkering' type='core:JaNejTYPE' minOccurs='0' />
       <xs:element name='SenasteAndringFolkbokforing' type='core:DT' minOccurs='0' />
-      <xs:element name='historiskTidpunkt' type='core:TS' minOccurs='0' />
       <xs:any namespace='##other' processContents='lax' minOccurs='0' maxOccurs='unbounded' />
     </xs:sequence>
   </xs:complexType>

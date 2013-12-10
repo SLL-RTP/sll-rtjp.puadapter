@@ -20,6 +20,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:riv:population:residentmaster:1" xmlns:m1="urn:riv:population:residentmaster:1.1" targetNamespace="urn:riv:population:residentmaster:1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
 
 	<xs:import namespace="urn:riv:population:residentmaster:1.1" schemaLocation="population_residentmaster_1.1_ext.xsd" />
+	
 	<xs:complexType name="ResidentType">
 		<xs:sequence>
 			<xs:element name="Sekretessmarkering" type="tns:JaNejTYPE" />
@@ -65,6 +66,7 @@
 			</xs:element>
 			<xs:element name="Postort" type="tns:Strang27TYPE"  minOccurs="0"/>
 			<xs:element ref="m1:Folkbokforingsdatum" minOccurs="0"/>
+			<xs:element ref="m1:SCB_Nyckelkod" minOccurs="0"/>
 			<!-- Any-elementet medvetet borttaget. Genom tillägg av frivilligt fält är utökningsmöjligheten förbrukad för denna post (inom 1.x) -->
 		</xs:sequence>
 	</xs:complexType>
@@ -225,9 +227,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="PersonIdTYPE">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]{8}[0-9pPtTfF][0-9]{3}"/>
-		</xs:restriction>
+		<xs:restriction base="xs:string" />
 	</xs:simpleType>
 	<xs:simpleType name="Strang2TYPE">
 		<xs:annotation>
@@ -237,6 +237,16 @@
 			<xs:maxLength value="2"/>
 		</xs:restriction>
 	</xs:simpleType>	
+	
+	<xs:simpleType name="Strang6TYPE">
+		<xs:annotation>
+			<xs:documentation>Strängar med 6 tecken</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
 	<xs:simpleType name="Strang35TYPE">
 		<xs:annotation>
 			<xs:documentation>Strängar med 35 tecken</xs:documentation>

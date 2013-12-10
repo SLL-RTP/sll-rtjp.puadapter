@@ -26,17 +26,5 @@
 	<xs:element name="AvregistreringsorsakKodKomplett" type="core:AvregistreringsorsakKodKomplettTYPE" />
 	
 	<xs:element name="Utlandsadress" type="core:UtlandsadressTYPE" />
-	
-	<xs:element name="HanvisningsPersonNr" type="core:PersonIdTYPE" />
-	
-	<xs:element name="Folkbokforingsdatum" type="core:OfullstandigtDatumTYPE" />
-	
-	<xs:element name="Fodelse" type="core:FodelseTYPE"/>
-	
-	<xs:element name="Civilstand" type="core:CivilstandTYPE" />
-	
-	<xs:element name="Invandring" type="core:InvandringTYPE"/>
-	
-	<xs:element name="SCB_Nyckelkod" type="core:Strang6TYPE" />	
 		
 </xs:schema>

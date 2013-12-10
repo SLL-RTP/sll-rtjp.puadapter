@@ -17,6 +17,7 @@ DON'T CHANGE THE CONTENT OF THIS COMMENT UNLESS YOU REALLY KNOW WHAT YOU ARE DOI
         <groupId>se.sll.rtjp.puadapter</groupId>
         <artifactId>puadapter-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
     </parent>
 
 	<artifactId>puadapter-schemas</artifactId>
