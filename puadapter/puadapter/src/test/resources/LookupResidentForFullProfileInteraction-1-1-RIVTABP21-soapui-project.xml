@@ -1,0 +1,1533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="LookupResidentForFullProfileInteraction_1.1_RIVTABP21" resourceRoot="" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LookupResidentForFullProfileResponderBinding" type="wsdl" bindingName="{urn:riv:population:residentmaster:LookupResidentForFullProfile:1:rivtabp21}LookupResidentForFullProfileResponderBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/erja/Downloads/Population_residentmaster_1.1_RC3/Population_residentmaster_1.1_RC3/schemas/interactions/LookupResidentForFullProfileInteraction/LookupResidentForFullProfileInteraction_1.1_RIVTABP21.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/erja/Downloads/Population_residentmaster_1.1_RC3/Population_residentmaster_1.1_RC3/schemas/interactions/LookupResidentForFullProfileInteraction/LookupResidentForFullProfileInteraction_1.1_RIVTABP21.wsdl"><con:part><con:url>file:/C:/Users/erja/Downloads/Population_residentmaster_1.1_RC3/Population_residentmaster_1.1_RC3/schemas/interactions/LookupResidentForFullProfileInteraction/LookupResidentForFullProfileInteraction_1.1_RIVTABP21.wsdl</con:url><con:content><![CDATA[<!--Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.-->
+<wsdl:definitions name="LookupResidentForFullProfileInteraction" targetNamespace="urn:riv:population:residentmaster:LookupResidentForFullProfile:1:rivtabp21" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tjsr="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1" xmlns:tjsi="urn:riv:population:residentmaster:LookupResidentForFullProfileInitiator:1" xmlns:tns="urn:riv:population:residentmaster:LookupResidentForFullProfile:1:rivtabp21" xmlns:itr="urn:riv:itintegration:registry:1">
+  <xs:annotation>
+    <xs:documentation>Tjänsteinteraktionens namn: LookupResidentForFullProfileInteraction
+			 Beskrivning: 
+			   Tjänst för att begära all känd information om en person.
+			 Revisioner: 
+			 Tjänstedomän: population:residentmaster
+			 Tjänsteinteraktionstyp: Fråga-Svar
+			 WS-profil: RIVTABP21
+			 Förvaltas av: Sveriges Kommuner och Landsting</xs:documentation>
+  </xs:annotation>
+  <wsdl:types>
+    <xs:schema targetNamespace="urn:riv:population:residentmaster:LookupResidentForFullProfile:1:rivtabp21">
+      <xs:import schemaLocation="LookupResidentForFullProfileResponder_1.1.xsd" namespace="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1"/>
+      <xs:import schemaLocation="../../core_components/itintegration_registry_1.0.xsd" namespace="urn:riv:itintegration:registry:1"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="LookupResidentForFullProfileRequest">
+    <wsdl:part name="LogicalAddress" element="itr:LogicalAddress">
+      <wsdl:documentation>Landstingets länskod eller Ineras organisationsnummer, beroende på i vilket sammanhang frågan ställs: Nationellt eller mot Landsting</wsdl:documentation>
+    </wsdl:part>
+    <wsdl:part name="parameters" element="tjsr:LookupResidentForFullProfile"/>
+  </wsdl:message>
+  <wsdl:message name="LookupResidentForFullProfileResponse">
+    <wsdl:part name="parameters" element="tjsr:LookupResidentForFullProfileResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="LookupResidentForFullProfileResponderInterface">
+    <wsdl:operation name="LookupResidentForFullProfile">
+      <wsdl:input message="tns:LookupResidentForFullProfileRequest"/>
+      <wsdl:output message="tns:LookupResidentForFullProfileResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LookupResidentForFullProfileResponderBinding" type="tns:LookupResidentForFullProfileResponderInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="LookupResidentForFullProfile">
+      <soap:operation soapAction="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile" style="document"/>
+      <wsdl:input>
+        <soap:header use="literal" message="tns:LookupResidentForFullProfileRequest" part="LogicalAddress"/>
+        <soap:body use="literal" parts="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LookupResidentForFullProfileResponderService">
+    <wsdl:port name="LookupResidentForFullProfileResponderPort" binding="tns:LookupResidentForFullProfileResponderBinding">
+      <soap:address location="http://tempuri.org"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\erja\Downloads\Population_residentmaster_1.1_RC3\Population_residentmaster_1.1_RC3\schemas\interactions\LookupResidentForFullProfileInteraction\LookupResidentForFullProfileResponder_1.1.xsd</con:url><con:content><![CDATA[<!--Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.-->
+<xs:schema targetNamespace="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1" xmlns:core="urn:riv:population:residentmaster:1">
+  <xs:import schemaLocation="../../core_components/population_residentmaster_1.1.xsd" namespace="urn:riv:population:residentmaster:1"/>
+  <xs:element name="LookupResidentForFullProfile" type="tns:LookupResidentForFullProfileType"/>
+  <xs:element name="LookupResidentForFullProfileResponse" type="tns:LookupResidentForFullProfileResponseType"/>
+  <xs:complexType name="LookupResidentForFullProfileType">
+    <xs:sequence>
+      <xs:element name="personId" type="core:PersonIdTYPE" maxOccurs="unbounded"/>
+      <xs:element name="lookUpSpecification" type="tns:LookUpSpecificationType"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LookupResidentForFullProfileResponseType">
+    <xs:sequence>
+      <xs:element name="resident" type="core:ResidentType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LookUpSpecificationType">
+    <xs:sequence>
+      <xs:element name="Avregistreringsorsak" type="xs:string" minOccurs="0" maxOccurs="unbounded" minLength="2" maxLength="2"/>
+      <xs:element name="Sekretessmarkering" type="core:JaNejTYPE" minOccurs="0"/>
+      <xs:element name="SenasteAndringFolkbokforing" type="core:DT" minOccurs="0"/>
+      <xs:element name="historiskTidpunkt" type="core:TS" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\erja\Downloads\Population_residentmaster_1.1_RC3\Population_residentmaster_1.1_RC3\schemas\core_components\population_residentmaster_1.1.xsd</con:url><con:content><![CDATA[<!--Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.-->
+<xs:schema targetNamespace="urn:riv:population:residentmaster:1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:riv:population:residentmaster:1" xmlns:m1="urn:riv:population:residentmaster:1.1">
+  <xs:import namespace="urn:riv:population:residentmaster:1.1" schemaLocation="population_residentmaster_1.1_ext.xsd"/>
+  <xs:complexType name="ResidentType">
+    <xs:sequence>
+      <xs:element name="Sekretessmarkering" type="tns:JaNejTYPE"/>
+      <xs:element name="SenasteAndringFolkbokforing" type="tns:DT" minOccurs="0"/>
+      <xs:element name="Personpost" type="tns:PersonpostTYPE"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonpostTYPE">
+    <xs:sequence>
+      <xs:element name="PersonId" type="tns:PersonIdTYPE"/>
+      <xs:element name="Kon" type="tns:KonTYPE" minOccurs="0"/>
+      <xs:element name="Fodelsetid" type="tns:DT" minOccurs="0"/>
+      <xs:element name="Avregistrering" type="tns:AvregistreringTYPE" minOccurs="0"/>
+      <xs:element name="Namn" type="tns:NamnTYPE" minOccurs="0"/>
+      <xs:element name="Folkbokforingsadress" type="tns:SvenskAdressTYPE" minOccurs="0"/>
+      <xs:element name="SarskildPostadress" type="tns:SvenskAdressTYPE" minOccurs="0"/>
+      <xs:element ref="m1:HanvisningsPersonNr" minOccurs="0"/>
+      <xs:element ref="m1:Utlandsadress" minOccurs="0"/>
+      <xs:element ref="m1:Civilstand" minOccurs="0"/>
+      <xs:element ref="m1:Fodelse" minOccurs="0"/>
+      <xs:element ref="m1:Invandring" minOccurs="0"/>
+      <xs:element ref="m1:Relationer"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SvenskAdressTYPE">
+    <xs:sequence>
+      <xs:element name="LanKod" type="tns:Strang2TYPE" minOccurs="0"/>
+      <xs:element name="KommunKod" type="tns:Strang2TYPE" minOccurs="0"/>
+      <xs:element name="ForsamlingKod" type="tns:Strang2TYPE" minOccurs="0"/>
+      <xs:element name="Fastighetsbeteckning" type="tns:Strang40TYPE" minOccurs="0"/>
+      <xs:element name="CareOf" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Utdelningsadress1" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Utdelningsadress2" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="PostNr" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="6"/>
+            <xs:maxLength value="6"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Postort" type="tns:Strang27TYPE" minOccurs="0"/>
+      <xs:element ref="m1:Folkbokforingsdatum" minOccurs="0"/>
+      <xs:element ref="m1:SCB_Nyckelkod" minOccurs="0"/>
+      <!--Any-elementet medvetet borttaget. Genom tillägg av frivilligt fält är utökningsmöjligheten förbrukad för denna post (inom 1.x)-->
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AvregistreringTYPE">
+    <xs:sequence>
+      <xs:element name="AvregistreringsorsakKod" type="tns:AvregistreringsorsakKodTYPE" minOccurs="0"/>
+      <!--Utgår i version 2.0-->
+      <xs:element name="Avregistreringsdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+      <xs:element ref="m1:AvregistreringsorsakKodKomplett" minOccurs="0"/>
+      <!--byter namn till AvregistreringsorsakKod i version 2.0-->
+      <!--Any-elementet medvetet borttaget. Genom tillägg av frivilligt fält är utökningsmöjligheten förbrukad för denna post (inom 1.x)-->
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvandringTYPE">
+    <xs:sequence>
+      <xs:element name="Invandringsdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelationerTYPE">
+    <xs:sequence>
+      <xs:element name="Relation" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="RelationId" type="tns:RelationPersonIdTYPE"/>
+            <xs:element name="Relationstyp" type="tns:RelationstypTYPE"/>
+            <xs:element name="RelationFromdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+            <xs:element name="RelationTomdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+            <xs:element name="Namn" type="tns:NamnTYPE" minOccurs="0"/>
+            <xs:element name="Avregistrering" type="tns:AvregistreringTYPE" minOccurs="0"/>
+            <xs:element name="Status" type="tns:RelationStatusTYPE" minOccurs="0"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelationPersonIdTYPE">
+    <xs:sequence>
+      <!--xs:choice i navets chema - ett av värdena måsta vara satta, men inte båda-->
+      <xs:element name="PersonNr" type="tns:PersonIdTYPE" minOccurs="0"/>
+      <xs:element name="FodelsetidNr" type="tns:PersonIdTYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NamnTYPE">
+    <xs:sequence>
+      <xs:element name="Tilltalsnamnsmarkering" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="10"/>
+            <xs:maxInclusive value="99"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Fornamn" type="tns:Strang80TYPE" minOccurs="0"/>
+      <xs:element name="Mellannamn" type="tns:Strang40TYPE" minOccurs="0"/>
+      <xs:element name="Efternamn" type="tns:Strang60TYPE" minOccurs="0"/>
+      <xs:element name="Aviseringsnamn" type="tns:Strang36TYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UtlandsadressTYPE">
+    <xs:sequence>
+      <xs:element name="Utdelningsadress1" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Utdelningsadress2" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Utdelningsadress3" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Land" type="tns:Strang35TYPE" minOccurs="0"/>
+      <xs:element name="Utlandsadressdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+      <xs:element name="Rostrattsdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CivilstandTYPE">
+    <xs:sequence>
+      <xs:element name="CivilstandKod" type="tns:CivilstandKodTYPE" minOccurs="0"/>
+      <xs:element name="Civilstandsdatum" type="tns:OfullstandigtDatumTYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FodelseTYPE">
+    <xs:sequence>
+      <xs:element name="HemortSverige" type="tns:HemortSverigeTYPE" minOccurs="0"/>
+      <xs:element name="OrtUtlandet" type="tns:OrtUtlandetTYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HemortSverigeTYPE">
+    <xs:sequence>
+      <xs:element name="FodelselanKod" type="tns:Strang2TYPE" minOccurs="0"/>
+      <xs:element name="Fodelseforsamling" type="tns:Strang2TYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrtUtlandetTYPE">
+    <xs:sequence>
+      <xs:element name="FodelseortUtland" type="tns:Strang80TYPE" minOccurs="0"/>
+      <xs:element name="Styrkt" type="tns:JaNejTYPE" minOccurs="0"/>
+      <xs:element name="Fodelseland" type="tns:Strang40TYPE" minOccurs="0"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="RelationstypTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="B"/>
+      <xs:enumeration value="MO"/>
+      <xs:enumeration value="FA"/>
+      <xs:enumeration value="F"/>
+      <xs:enumeration value="V"/>
+      <xs:enumeration value="VF"/>
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="P"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OfullstandigtDatumTYPE">
+    <xs:annotation>
+      <xs:documentation>Datum som kan vara ofullständiga</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="4"/>
+      <xs:maxLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AvregistreringsorsakKodTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AV"/>
+      <xs:enumeration value="GN"/>
+      <xs:enumeration value="OO"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AvregistreringsorsakKodKomplettTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AV"/>
+      <xs:enumeration value="UV"/>
+      <xs:enumeration value="GN"/>
+      <xs:enumeration value="AN"/>
+      <xs:enumeration value="AS"/>
+      <xs:enumeration value="GS"/>
+      <xs:enumeration value="OB"/>
+      <xs:enumeration value="TA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="JaNejTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="J"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PersonIdTYPE">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="Strang2TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 2 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang6TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 6 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang35TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 35 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang27TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 35 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="27"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang36TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 35 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="36"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang40TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 40 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="40"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang60TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 60 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Strang80TYPE">
+    <xs:annotation>
+      <xs:documentation>Strängar med 80 tecken</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="KonTYPE">
+    <xs:annotation>
+      <xs:documentation>K=Kvinna, M=Man</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="K"/>
+      <xs:enumeration value="M"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TS">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[1-9]{1}[0-9]{3}(0[1-9]{1}|1[0-2]{1})([0-2]{1}[0-9]{1}|3[0-1]{1})([0-1]{1}[0-9]{1}|2[0-3]{1})[0-5]{1}[0-9]{1}[0-5]{1}[0-9]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DT">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[1-9]{1}[0-9]{3}(0[1-9]{1}|1[0-2]{1})([0-2]{1}[0-9]{1}|3[0-1]{1})"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RelationStatusTYPE">
+    <!--är attribut i navet-schema-->
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NY"/>
+      <xs:enumeration value="PB"/>
+      <xs:enumeration value="RD"/>
+      <xs:enumeration value="AS"/>
+      <xs:enumeration value="AV"/>
+      <xs:enumeration value="IV"/>
+      <xs:enumeration value="AN"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CivilstandKodTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OG"/>
+      <xs:enumeration value="G"/>
+      <xs:enumeration value="A"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="RP"/>
+      <xs:enumeration value="SP"/>
+      <xs:enumeration value="EP"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\erja\Downloads\Population_residentmaster_1.1_RC3\Population_residentmaster_1.1_RC3\schemas\core_components\population_residentmaster_1.1_ext.xsd</con:url><con:content><![CDATA[<!--Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.-->
+<xs:schema targetNamespace="urn:riv:population:residentmaster:1.1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:riv:population:residentmaster:1.1" xmlns:core="urn:riv:population:residentmaster:1">
+  <xs:import schemaLocation="population_residentmaster_1.1.xsd" namespace="urn:riv:population:residentmaster:1"/>
+  <!--(recursive import by itention)-->
+  <xs:element name="Relationer" type="core:RelationerTYPE"/>
+  <xs:element name="AvregistreringsorsakKodKomplett" type="core:AvregistreringsorsakKodKomplettTYPE"/>
+  <xs:element name="Utlandsadress" type="core:UtlandsadressTYPE"/>
+  <xs:element name="HanvisningsPersonNr" type="core:PersonIdTYPE"/>
+  <xs:element name="Folkbokforingsdatum" type="core:OfullstandigtDatumTYPE"/>
+  <xs:element name="Fodelse" type="core:FodelseTYPE"/>
+  <xs:element name="Civilstand" type="core:CivilstandTYPE"/>
+  <xs:element name="Invandring" type="core:InvandringTYPE"/>
+  <xs:element name="SCB_Nyckelkod" type="core:Strang6TYPE"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\erja\Downloads\Population_residentmaster_1.1_RC3\Population_residentmaster_1.1_RC3\schemas\core_components\itintegration_registry_1.0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:riv:itintegration:registry:1" elementFormDefault="qualified" version="1.0" xmlns="urn:riv:itintegration:registry:1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>Beskrivning: 	Grundläggande informationsobjekt för domänen itintegration:registry (adressering av tjänster)
+			
+			Revisionshistorik: 2011-06-27 Mats Ekhammar, Callista Enterprise AB
+				Added ServiceContractType
+			
+			Datum:			2011-05-04
+			Beskrivning:	Initial version
+			Författare:		marcus.krantz@callistaenterprise.se</xs:documentation>
+  </xs:annotation>
+  <xs:element name="LogicalAddress" type="LogicalAddressType"/>
+  <xs:element name="ServiceContract" type="ServiceContractType"/>
+  <xs:simpleType name="LogicalAddressType">
+    <xs:annotation>
+      <xs:documentation>Defines the type for logical address according to national reference architecture.
+				Superseeds wsa:To as type for logical address header in RIVTA 2.1.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType name="ServiceContractType">
+    <xs:annotation>
+      <xs:documentation>Type which describes a service contract. Used in interaction GetSupportedServiceContracts.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ServiceContractNamespace" type="xs:anyURI"/>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://tempuri.org</con:endpoint><con:endpoint>http://SOL-LT24:8088/mockLookupResidentForFullProfileResponderBinding</con:endpoint><con:endpoint>http://localhost:8081/</con:endpoint><con:endpoint>https://33.33.33.33:2000/vp/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:endpoint>http://localhost:8081/puadapter/services/lookupResidentForFullProfileInteraction/v1</con:endpoint><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:endpoint>http://10.110.0.106:8082/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile" name="LookupResidentForFullProfile" bindingOperationName="LookupResidentForFullProfile" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1 - 19301229-9263"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <!--<urn1:personId>191212121212</urn1:personId>
+         <urn1:personId>193012299263</urn1:personId>-->
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak></urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080101</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2 - 19030124-9801 (AV)"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080101</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://tempuri.org</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>?</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>?</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Zero or more repetitions:-->
+            <urn1:Avregistreringsorsak>?</urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <urn1:Sekretessmarkering>?</urn1:Sekretessmarkering>
+            <!--Optional:-->
+            <urn1:SenasteAndringFolkbokforing>?</urn1:SenasteAndringFolkbokforing>
+            <!--Optional:-->
+            <urn1:historiskTidpunkt>?</urn1:historiskTidpunkt>
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="false" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true" id="237e6646-0e99-42af-84a4-5c880754d760" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="request" name="Data validation - 19301229-9263"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - 19301229-9263" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>193012299263</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>N</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:SenasteAndringFolkbokforing</path><content>20080116</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>193012299263</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>K</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19301229</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>Testperson 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/count(ns2:Mellannamn)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>Vårdguiden</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>VÅRDGUIDEN, TESTPERSON 1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>80</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -ForsKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>18</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Folkbokföringsdatum"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns3:Folkbokforingsdatum</path><content>2007</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SarskildPostadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Data validation - 19030124-9801 (AV)"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - 19030124-9801 (AV)" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>N</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:SenasteAndringFolkbokforing</path><content>20080116</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>190301249801</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>K</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19030124</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>Testperson 7</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/count(ns2:Mellannamn)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>Apptest</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>Apptest, Testperson 7</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>60</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -ForsKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Folkbokföringsdatum"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns3:Folkbokforingsdatum</path><content>2007</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SarskildPostadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Data validation - 19821212-7495 (RIKTIG)"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - 19821212-7495 (RIKTIG)" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>198212127495</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>N</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:SenasteAndringFolkbokforing</path><content>20110402</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>198212127495</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>M</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19821212</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>/Eric/Gunnar</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/string-length(ns2:Mellannamn)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>Jacobsson</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>Jacobsson,/Eric/Gunnar</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>80</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - ForsKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>19</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Folkbokföringsdatum"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns3:Folkbokforingsdatum</path><content>2008</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SarskildPostadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Data validation - 19420119-9124 (SEKR)"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - 19420119-9124 (SEKR)" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>194201199124</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>J</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/count(ns2:SenasteAndringFolkbokforing)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>194201199124</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>K</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19420119</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn Censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Mellannamn</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>PERSONUPPGIFTEN, SKYDDAD</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>98</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - ForsKod censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>99</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Folkbokföringsdatum"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/count(ns3:Folkbokforingsdatum)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Sarskild C/O-adress censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:SarskildPostadress/ns2:CareOf</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Sarskild Utd.adress1 censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:SarskildPostadress/ns2:Utdelningsadress1</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Sarskild Utd.adress2 censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:SarskildPostadress/ns2:Utdelningsadress2</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Sarskild Postnummer censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:SarskildPostadress/ns2:PostNr</path><content>000 00</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Sarskild Postort censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:SarskildPostadress/ns2:Postort</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress1 censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/ns2:Utdelningsadress1</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress2 censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/ns2:Utdelningsadress2</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress3 censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/ns2:Utdelningsadress3</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress Land censored"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/ns2:Land</path><content>*</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Data validation - Reservperson 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - Reservperson 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>991999390527</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>N</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:SenasteAndringFolkbokforing</path><content>20080113</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>991999390840</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>K</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19000101</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>Test</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/count(ns2:Mellannamn)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>Applikations</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>APPLIKATIONS, TEST</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>33</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>99</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -ForsKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>99</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SarskildPostadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Data validation - Reservperson 2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Data validation - Reservperson 2" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>992003648140</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:personId>198212127495</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20080114</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match - Sekretessmarkering"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Sekretessmarkering</path><content>N</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SenasteAndringFBF"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:SenasteAndringFolkbokforing</path><content>20080113</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - PersonId"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>992003648140</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Kön"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Kon</path><content>K</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Födelsetid"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Fodelsetid</path><content>19500101</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Förnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Fornamn</path><content>Karin</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Mellannamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Mellannamn</path><content>Tietoenator</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Efternamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Efternamn</path><content>Testperson</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Aviseringsnamn"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Namn/ns2:Aviseringsnamn</path><content>TIETOENATOR TESTPERSON, KARIN</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - LanKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:LanKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - KommunKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:KommunKod</path><content>80</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match -ForsKod"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+	/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:Folkbokforingsadress/ns2:ForsamlingKod</path><content>01</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Hanvisningspersonnummer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/count(ns3:HanvisningsPersonNr)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - SarskildPostadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Utlandsadress"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Utlandsadress/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match - Relationer"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+
+/soap:Envelope/soap:Body/ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns3:Relationer/count(*)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter validation - Filter AV Avliden"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter validation - Filter AV Avliden" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Only one person returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>190301249801</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter validation - Filter AV icke avregistrerade"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter validation - Filter AV icke avregistrerade" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <urn1:Avregistreringsorsak>  </urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Only one person returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>191212121212</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter validation - Filter AV reverse"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter validation - Filter AV reverse" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <urn1:Avregistreringsorsak>OO</urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="No persons returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter validation - Filter AV null"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter validation - Filter AV null" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak></urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Both persons returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident[1]/ns2:Personpost/ns2:PersonId</path><content>190301249801</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request 2"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident[2]/ns2:Personpost/ns2:PersonId</path><content>191212121212</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter validation - Filter OO"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter validation - Filter OO" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>190301249801</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <urn1:Avregistreringsorsak>OO</urn1:Avregistreringsorsak>
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name=" No persons returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter valdation - Filter Sekr"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter valdation - Filter Sekr" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>194201199124</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Only one person returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>194201199124</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter valdation - Filter Sekr reverse"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter valdation - Filter Sekr reverse" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>194201199124</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>
+            <!--Optional:-->
+            <!--<urn1:SenasteAndringFolkbokforing>20071107</urn1:SenasteAndringFolkbokforing>-->
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Only one person returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>191212121212</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter valdation - Filter SenasteAndringFolkbokforing"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter valdation - Filter SenasteAndringFolkbokforing" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>195711212893</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <urn1:SenasteAndringFolkbokforing>20080115</urn1:SenasteAndringFolkbokforing>
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="Both persons returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident[1]/ns2:Personpost/ns2:PersonId</path><content>195711212893</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request 2"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident[2]/ns2:Personpost/ns2:PersonId</path><content>191212121212</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter valdation - Filter SenasteAndringFolkbokforing 2"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter valdation - Filter SenasteAndringFolkbokforing 2" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>195711212893</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <urn1:SenasteAndringFolkbokforing>20080618</urn1:SenasteAndringFolkbokforing>
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="One person returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" name="The right person that is returned in the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/ns1:resident/ns2:Personpost/ns2:PersonId</path><content>195711212893</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Filter valdation - Filter SenasteAndringFolkbokforing 3"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>LookupResidentForFullProfileResponderBinding</con:interface><con:operation>LookupResidentForFullProfile</con:operation><con:request name="Filter valdation - Filter SenasteAndringFolkbokforing 3" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/servicebridge/LookupResidentForFullProfile/1/rivtabp21</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:itintegration:registry:1" xmlns:urn1="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1">
+   <soapenv:Header>
+      <urn:LogicalAddress>SE123465</urn:LogicalAddress>
+   </soapenv:Header>
+   <soapenv:Body>
+      <urn1:LookupResidentForFullProfile>
+         <!--1 or more repetitions:-->
+         <urn1:personId>195711212893</urn1:personId>
+         <urn1:personId>191212121212</urn1:personId>
+         <urn1:lookUpSpecification>
+            <!--Optional:-->
+            <!--<urn1:Avregistreringsorsak>AV</urn1:Avregistreringsorsak>-->
+            <!--Optional:-->
+            <!--<urn1:Sekretessmarkering>J</urn1:Sekretessmarkering>-->
+            <!--Optional:-->
+            <urn1:SenasteAndringFolkbokforing>20080619</urn1:SenasteAndringFolkbokforing>
+            <!--You may enter ANY elements at this point-->
+         </urn1:lookUpSpecification>
+         <!--You may enter ANY elements at this point-->
+      </urn1:LookupResidentForFullProfile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Schema Compliance" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="No persons returned from the request"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns4='urn:riv:itintegration:registry:1';
+declare namespace ns2='urn:riv:population:residentmaster:1';
+declare namespace ns1='urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1';
+declare namespace ns3='urn:riv:population:residentmaster:1.1';
+//ns1:LookupResidentForFullProfileResponse/count(ns1:resident)</path><content>0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService port="8088" path="/mockLookupResidentForFullProfileResponderBinding" host="SOL-LT24" name="LookupResidentForFullProfileResponderBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="LookupResidentForFullProfile" interface="LookupResidentForFullProfileResponderBinding" operation="LookupResidentForFullProfile"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1" xmlns:urn1="urn:riv:population:residentmaster:1" xmlns:urn2="urn:riv:population:residentmaster:1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:LookupResidentForFullProfileResponse>
+         <!--Zero or more repetitions:-->
+		<urn:resident>
+			<urn1:Sekretessmarkering>N</urn1:Sekretessmarkering>
+			<!--Optional:-->
+			<urn1:SenasteAndringFolkbokforing>20121012</urn1:SenasteAndringFolkbokforing>
+			<urn1:Personpost>
+				<urn1:PersonId>191212121212</urn1:PersonId>
+				<!--Optional:-->
+				<urn1:Kon>M</urn1:Kon>
+				<!--Optional:-->
+				<urn1:Fodelsetid>20010101</urn1:Fodelsetid>
+				<!--Optional:-->
+				<urn1:Namn>
+					<!--Optional:-->
+					<urn1:Tilltalsnamnsmarkering>10</urn1:Tilltalsnamnsmarkering>
+					<!--Optional:-->
+					<urn1:Fornamn>Tolvån</urn1:Fornamn>
+					<!--Optional:-->
+					<urn1:Mellannamn></urn1:Mellannamn>
+					<!--Optional:-->
+					<urn1:Efternamn>Tölvänsson</urn1:Efternamn>
+					<!--Optional:-->
+					<urn1:Aviseringsnamn>Tolvansson, Tolvan</urn1:Aviseringsnamn>
+					<!--You may enter ANY elements at this point-->
+				</urn1:Namn>
+				<!--Optional:-->
+				<urn1:Folkbokforingsadress>
+					<!--Optional:-->
+					<urn1:LanKod>01</urn1:LanKod>
+					<!--Optional:-->
+					<urn1:KommunKod>80</urn1:KommunKod>
+					<!--Optional:-->
+					<urn1:ForsamlingKod>75</urn1:ForsamlingKod>
+					<!--Optional:-->
+					<urn1:Fastighetsbeteckning>HEMMA</urn1:Fastighetsbeteckning>
+					<!--Optional:-->
+					<urn1:Utdelningsadress2>Tolvanvägen 12</urn1:Utdelningsadress2>
+					<!--Optional:-->
+					<urn1:PostNr>112 12</urn1:PostNr>
+					<!--Optional:-->
+					<urn1:Postort>Tolvanstaden</urn1:Postort>
+					<!--Optional:-->
+					<urn2:Folkbokforingsdatum>20080101</urn2:Folkbokforingsdatum>
+				</urn1:Folkbokforingsadress>
+				<!--Optional:-->
+				<urn2:Civilstand>
+					<!--Optional:-->
+					<urn1:CivilstandKod>G</urn1:CivilstandKod>
+					<!--Optional:-->
+					<urn1:Civilstandsdatum>20030516</urn1:Civilstandsdatum>
+					<!--You may enter ANY elements at this point-->
+				</urn2:Civilstand>
+				<!--Optional:-->
+				<urn2:Fodelse>
+					<!--Optional:-->
+					<urn1:HemortSverige>
+						<!--Optional:-->
+						<urn1:FodelselanKod>01</urn1:FodelselanKod>
+						<!--Optional:-->
+						<urn1:Fodelseforsamling>80</urn1:Fodelseforsamling>
+						<!--You may enter ANY elements at this point-->
+					</urn1:HemortSverige>
+				</urn2:Fodelse>
+				<urn2:Relationer>
+					<!--Zero or more repetitions:-->
+					<urn1:Relation>
+						<urn1:RelationId>
+							<!--Optional:-->
+							<urn1:PersonNr>191010101010</urn1:PersonNr>
+							<!--Optional:-->
+							<urn1:FodelsetidNr>191010101234</urn1:FodelsetidNr>
+							<!--You may enter ANY elements at this point-->
+						</urn1:RelationId>
+						<urn1:Relationstyp>M</urn1:Relationstyp>
+						<!--Optional:-->
+						<urn1:RelationFromdatum>20080101</urn1:RelationFromdatum>
+						<!--Optional:-->
+						<urn1:Status>AN</urn1:Status>
+						<!--You may enter ANY elements at this point-->
+					</urn1:Relation>
+				</urn2:Relationer>
+				<!--You may enter ANY elements at this point-->
+			</urn1:Personpost>
+			<!--You may enter ANY elements at this point-->
+		</urn:resident>
+		<!--You may enter ANY elements at this point-->
+      </urn:LookupResidentForFullProfileResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:riv:population:residentmaster:LookupResidentForFullProfileResponder:1:LookupResidentForFullProfile"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>
