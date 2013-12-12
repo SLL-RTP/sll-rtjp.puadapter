@@ -230,9 +230,9 @@ public enum PKNODPLUS implements SnodFieldsInterface {
     /** Relationstyp för relation 1. */
     RELATION_1_TYP                  (1310, 1312),
     /** Personnummer för relation 2. */
-    RELATION_2_PNR                  (1298, 1310),
+    RELATION_2_PNR                  (1312, 1324),
     /** Relationstyp för relation 2. */
-    RELATION_2_TYP                  (1310, 1312);
+    RELATION_2_TYP                  (1324, 1326);
 
 
     /** The start index for a substring. */

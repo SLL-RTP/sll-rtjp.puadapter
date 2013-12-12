@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" version="EE-3.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:core="http://www.mulesoft.org/schema/mule/core" version="EE-3.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
-http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesource.org/schema/mule/xml/2.2 http://www.mulesource.org/schema/mule/xml/2.2/mule-xml.xsd
-http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
     <flow name="LookupResident-flow" doc:name="LookupResident-flow">
         <http:inbound-endpoint exchange-pattern="request-response" address="${LOOKUPRESIDENT_INBOUND_URL}" doc:name="HTTP"/>
+        
         <object-to-string-transformer doc:name="Object to String"/>
         
-        <set-variable variableName="responses" value="#[new ArrayList()]" doc:name="Create ResidentType-list"/>
         <set-variable variableName="filterAvregOrsak" value="#[xpath('//urn1:Avregistreringsorsak') == null ? null : xpath('//urn1:Avregistreringsorsak').text]" doc:name="Variable"/>
         <set-variable variableName="filterSekretessmarkering" value="#[xpath('//urn1:Sekretessmarkering') == null ? null : xpath('//urn1:Sekretessmarkering/text()').text]" doc:name="Variable"/>
         <set-variable variableName="filterSenasteAndringFolkbokforing" value="#[xpath('//urn1:SenasteAndringFolkbokforing') == null ? null : xpath('//urn1:SenasteAndringFolkbokforing/text()').text]" doc:name="Variable"/>
-        
+        <set-variable variableName="filterHistoriskTidpunkt" value="#[xpath('//urn1:historiskTidpunkt') == null ? null : xpath('//urn1:historiskTidpunkt/text()').text]" doc:name="Variable"/>
         <expression-component doc:name="Create FilterParameters"><![CDATA[ flowVars['filterParams'] = new se.sll.rtjp.puadapter.lookupresident.filter.FilterParameters(flowVars['filterAvregOrsak'], flowVars['filterSekretessmarkering'], flowVars['filterSenasteAndringFolkbokforing'])]]></expression-component>
         
-        <foreach collection="xpath('//urn1:personId')" doc:name="For Each Pnr from req">
-            <flow-ref name="fetch-resident-data" doc:name="Fetch Resident info"/>
-        </foreach>
-        
+	    <expression-component doc:name="Fetch residents from SNOD"><![CDATA[ flowVars['responses'] = (new se.sll.rtjp.puadapter.lookupresident.fetcher.ThreadedSNODFetcher('${PU_SNOD_URL}', '${PU_SNOD_USERNAME}', '${PU_SNOD_PASSWORD}')).fetchAllFromRequest(xpath('//urn1:LookupResidentForFullProfile'))]]></expression-component>
+	    
         <expression-component doc:name="Filter responselist"><![CDATA[ se.sll.rtjp.puadapter.lookupresident.filter.LookupSpecificationFilter.filterResidentList(flowVars['responses'], flowVars['filterParams']) ]]> </expression-component>
         
-        <cxf:jaxws-service serviceClass="riv.population.residentmaster.lookupresidentforfullprofile.v1.rivtabp21.LookupResidentForFullProfileResponderInterface"  doc:name="LookupResident-service" />
+        <cxf:jaxws-service serviceClass="riv.population.residentmaster.lookupresidentforfullprofile.v1.rivtabp21.LookupResidentForFullProfileResponderInterface" validationEnabled="true"  doc:name="LookupResident-service" />
         <component class="se.sll.rtjp.puadapter.lookupresident.LookupResidentServiceImpl" doc:name="Java Service Impl"/>
+        
         <response>
-          		<expression-component doc:name="Filter and Add residents to List"><![CDATA[ payload.getResident().addAll(flowVars['responses']); ]]></expression-component>
+          		<expression-component doc:name="Add residents to payload"><![CDATA[ payload.getResident().addAll(flowVars['responses']); ]]></expression-component>
         </response>
+        
+		<catch-exception-strategy>
+			<logger level="ERROR" message="Error procesor! #[exception]" />
+			<custom-transformer class="se.sll.rtjp.puadapter.lookupresident.exception.SOAPFaultExceptionTransformer" />
+		</catch-exception-strategy>
     </flow>
-    <sub-flow name="fetch-resident-data" doc:name="fetch-resident-data">
-        <set-variable variableName="currentPnr" value="#[xpath('text()').data]" doc:name="Fetch current Pnr with XPath"/>
-        <logger message="Processing patientid: #[variable:currentPnr]" level="INFO" doc:name="Log current Pnr"/>
-        <https:outbound-endpoint exchange-pattern="request-response" method="GET" address="${PU_SNOD_URL}?arg=#[variable:currentPnr]" encoding="ISO-8859-15" connector-ref="httpConnector" contentType="text/plain" doc:name="Call PU via SNOD" mimeType="text/plain" responseTransformer-refs="pknodplus-to-residenttype-transformer"/>
-        <expression-component doc:name="Add resident to List"><![CDATA[flowVars['responses'].add(payload)]]></expression-component>
-    </sub-flow>
 </mule>

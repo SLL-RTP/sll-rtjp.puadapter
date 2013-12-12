@@ -15,11 +15,11 @@
  */
 package se.sll.rtjp.puadapter.lookupresident.transform;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 import org.mule.api.transformer.TransformerException;
 import org.mule.transformer.types.DataTypeFactory;
-import org.mule.transport.http.ReleasingInputStream;
 
 import riv.population.residentmaster.v1.CivilstandTYPE;
 import riv.population.residentmaster.v1.JaNejTYPE;
@@ -29,6 +29,7 @@ import riv.population.residentmaster.v1.ObjectFactory;
 import riv.population.residentmaster.v1.PersonpostTYPE;
 import riv.population.residentmaster.v1.RelationPersonIdTYPE;
 import riv.population.residentmaster.v1.RelationerTYPE;
+import riv.population.residentmaster.v1.RelationstypTYPE;
 import riv.population.residentmaster.v1.UtlandsadressTYPE;
 import riv.population.residentmaster.v1.RelationerTYPE.Relation;
 import riv.population.residentmaster.v1.ResidentType;
@@ -50,7 +51,7 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
      */
     public PKNODPLUSToResidentTypeTransformer() {
         super();
-        this.registerSourceType(DataTypeFactory.create(ReleasingInputStream.class));
+        this.registerSourceType(DataTypeFactory.create(InputStream.class));
         this.setReturnDataType(DataTypeFactory.create(ResidentType.class));
     }
 
@@ -65,7 +66,7 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
      */
     @Override
     protected Object doTransform(Object src, String enc) throws TransformerException {
-        ReleasingInputStream test = (ReleasingInputStream) src;
+        InputStream test = (InputStream) src;
         Scanner streamScanner = new Scanner(test, "ISO-8859-15");
         streamScanner.useDelimiter("\\A");
         String inputStreamString = streamScanner.next();
@@ -88,7 +89,9 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
 
     private ResidentType createAndPopulateResidentType(ObjectFactory objectFactory) {
         ResidentType transformedResident = objectFactory.createResidentType();
-        transformedResident.setSenasteAndringFolkbokforing(getValueOrNull(PKNODPLUS.SENASTE_REG_DATUM));
+        if (!"00000000".equals(getValueOrNull(PKNODPLUS.SENASTE_REG_DATUM))) {
+            transformedResident.setSenasteAndringFolkbokforing(getValueOrNull(PKNODPLUS.SENASTE_REG_DATUM));
+        }
         transformedResident.setSekretessmarkering(getValue(PKNODPLUS.RETURKOD).equals("0002") ? JaNejTYPE.J : JaNejTYPE.N);
         return transformedResident;
     }
@@ -114,19 +117,8 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
             personPost.setCivilstand(civstand);
         }
 
-        // TODO - PU does not expose any birth info except for the date?
-        /*FodelseTYPE fodelse = objectFactory.createFodelseTYPE(); 
-        HemortSverigeTYPE hemortSverige = objectFactory.createHemortSverigeTYPE();
-        // hemortSverige.setFodelseforsamling(value) ????
-        // hemortSverige.setFodelselanKod(); ???
-        fodelse.setHemortSverige(hemortSverige);
-
-        OrtUtlandetTYPE ortUtlandet = objectFactory.createOrtUtlandetTYPE();
-        // ortUtlandet.setFodelseland(value);
-        // ortUtlandet.setFodelseortUtland(value);
-        // ortUtlandet.setStyrkt(value);
-        fodelse.setOrtUtlandet(ortUtlandet);*/
-        //personPost.setFodelse(fodelse);
+        // PU does not expose any birth info except for the date
+        // FodelseTYPE fodelse = objectFactory.createFodelseTYPE();
 
         personPost.setFodelsetid(getValueOrNull(PKNODPLUS.FÖDELESDATUM));
 
@@ -150,8 +142,6 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
         // PU automatically follows links for Hanvisningsnummer and returns information for the most current identity.
         // personPost.setHanvisningsPersonNr();
 
-        // personPost.setInvandring(value) // TODO!
-        
         int konSiffra = (Integer.valueOf(getValue(PKNODPLUS.AKTUELLT_PERSONNUMMER).substring(10, 11)));
         personPost.setKon(konSiffra % 2 == 0 ? KonTYPE.K : KonTYPE.M);
 
@@ -166,26 +156,33 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
         personPost.setPersonId(getValueOrNull(PKNODPLUS.AKTUELLT_PERSONNUMMER));
 
         RelationerTYPE relationer = objectFactory.createRelationerTYPE();
+        if (!getValueOrNull(PKNODPLUS.RELATION_1_PNR).equals("000000000000")) {
+            Relation relationEtt = objectFactory.createRelationerTYPERelation();
+            relationEtt.setRelationstyp(RelationstypTYPE.fromValue(getValueOrNull(PKNODPLUS.RELATION_1_TYP)));
+            RelationPersonIdTYPE relationEttPnr = new RelationPersonIdTYPE();
+            relationEttPnr.setPersonNr(getValueOrNull(PKNODPLUS.RELATION_1_PNR));
+            relationEtt.setRelationId(relationEttPnr);
+            relationer.getRelation().add(relationEtt);
+        }
 
-        Relation relationEtt = objectFactory.createRelationerTYPERelation();
-        // relationEtt.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_1_TYP)));  //TODO
-        RelationPersonIdTYPE relationEttPnr = new RelationPersonIdTYPE();
-        relationEttPnr.setPersonNr(getValueOrNull(PKNODPLUS.RELATION_1_PNR));
-        relationEtt.setRelationId(relationEttPnr);
-        relationer.getRelation().add(relationEtt);
-
-        Relation relationTvå = objectFactory.createRelationerTYPERelation();
-        // relationTvå.setRelationstyp(RelationstypTYPE.fromValue(re.getField(PKNODPLUS.RELATION_2_TYP)));   //TODO
-        RelationPersonIdTYPE relationTvåPnr = new RelationPersonIdTYPE();
-        relationTvåPnr.setPersonNr(getValueOrNull(PKNODPLUS.RELATION_2_PNR));
-        relationTvå.setRelationId(relationTvåPnr);
-        relationer.getRelation().add(relationTvå);
+        if (!getValueOrNull(PKNODPLUS.RELATION_2_PNR).equals("000000000000")) {
+            Relation relationTvå = objectFactory.createRelationerTYPERelation();
+            relationTvå.setRelationstyp(RelationstypTYPE.fromValue(getValueOrNull(PKNODPLUS.RELATION_1_TYP)));
+            RelationPersonIdTYPE relationTvåPnr = new RelationPersonIdTYPE();
+            relationTvåPnr.setPersonNr(getValueOrNull(PKNODPLUS.RELATION_2_PNR));
+            relationTvå.setRelationId(relationTvåPnr);
+            relationer.getRelation().add(relationTvå);
+        }
 
         personPost.setRelationer(relationer);
 
         SvenskAdressTYPE särskildAdress = objectFactory.createSvenskAdressTYPE();
         särskildAdress.setCareOf(getValueOrNull(PKNODPLUS.SÄRSKILD_CO_ADRESS));
-        särskildAdress.setPostNr(getValueOrNull(PKNODPLUS.SÄRSKILD_POSTNUMMER));
+        String sarskildPnr = getValueOrNull(PKNODPLUS.SÄRSKILD_POSTNUMMER);
+        if (sarskildPnr != null) {
+            // The postnummer must be 3+2 with a space in the middle to fit the schema, and PU serves it with no space.
+            särskildAdress.setPostNr(sarskildPnr.substring(0, 3) + " " + sarskildPnr.substring(3));
+        }
         särskildAdress.setPostort(getValueOrNull(PKNODPLUS.SÄRSKILD_POSTORT));
         särskildAdress.setUtdelningsadress1(getValueOrNull(PKNODPLUS.SÄRSKILD_UTDEL_ADRESS_1));
         särskildAdress.setUtdelningsadress2(getValueOrNull(PKNODPLUS.SÄRSKILD_UTDEL_ADRESS_2));
