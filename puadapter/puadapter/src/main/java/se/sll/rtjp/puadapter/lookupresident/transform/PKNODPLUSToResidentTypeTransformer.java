@@ -72,8 +72,6 @@ public class PKNODPLUSToResidentTypeTransformer extends SNODAbstractTransformer 
         String inputStreamString = streamScanner.next();
         streamScanner.close();
         
-        System.out.println("line: <" + inputStreamString + ">");
-        
         // Create helper objects
         setResidentExtractor(new ResidentExtractor(inputStreamString));
         ObjectFactory objectFactory = new ObjectFactory();
